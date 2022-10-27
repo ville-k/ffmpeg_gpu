@@ -26,6 +26,10 @@ docker run --gpus all -e VIDIA_DRIVER_CAPABILITIES=video,compute,utility  nvffmp
 
 Note: we're passing the driver capabilities flag `-e VIDIA_DRIVER_CAPABILITIES=video,compute,utility` because by default GPU video capabilities are not exposed to the container. See [Nvidoa Docker user guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/user-guide.html#driver-capabilities) for more details.
 
+### Transcoding a Video
+
+To transcode an mp4 video using hardware acceleration run:
+
 ```sh
 docker run --gpus all -v "$PWD:$PWD" -w "$PWD" -e NVIDIA_DRIVER_CAPABILITIES=video,compute,utility  nvffmpeg -hwaccel cuda -hwaccel_output_format cuda -i input.mp4 -c:v h264_nvenc output.mp4
 ```
